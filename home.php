@@ -27,6 +27,7 @@
                 echo "<td>" . $row["id"] . " | ";
                 echo "<td>" . $row['email'] . " | ";
                 echo "<td>" . $row['password'] . "</td>";
+                echo "<td><a class='btn btn-primary' href='#?id=" . $row['id'] . "'>Edit</a> | <a class='btn btn-danger' href='delete7.php?id=" . $row['id'] . "'>Delete</a></td>";
                 echo "</tr>";
             }
         } else {
@@ -41,11 +42,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <form method="POST">
-        <input type="text" name="email">
-        <input type="password" name="password">
+        <label for="email">Email:</label> <br>
+        <input type="text" name="email"> <br>
+        <label for="password">Password:</label> <br>
+        <input type="password" name="password"> <br>
         <input type="submit">
     </form>
 
