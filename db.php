@@ -19,5 +19,39 @@ class Database {
         $stmt = $this->pdo->query("SELECT * FROM $this->table");
         return $stmt;
     }
+
+    public function delete($id) {
+        $stmt = $this->pdo->prepare("DELETE FROM $this->table WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt; 
+    }
+    
+    public function selectID($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM $this->table WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt;
+    }
+    
+    public function update($id) {
+        $updatestmt = $this->pdo->prepare("UPDATE $this->table SET email = :email, password = :wachtwoord WHERE id = :id");
+        $newEmail = $_POST['new_email'];
+        $newWachtwoord = $_POST['new_wachtwoord'];
+        $password = password_hash($newWachtwoord, PASSWORD_DEFAULT);
+        $updatestmt->bindParam(':email', $newEmail, PDO::PARAM_STR);
+        $updatestmt->bindParam(':wachtwoord', $password, PDO::PARAM_STR);
+        $updatestmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $updatestmt->execute();
+        return $updatestmt;
+    }
+    
+
+
+
+
+
+
+
+
 }
 ?>
